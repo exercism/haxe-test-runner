@@ -1,0 +1,14 @@
+{
+  "status": "fail",
+  "tests": [
+    {
+      "name": "identity function of 1",
+      "status": "fail",
+      "output": null,
+      "testCode": "./tmp/haxe_test_runner/Test.hx",
+      "message": "runtime exception"
+    }
+  ],
+  "message": null,
+  "version": 2
+}

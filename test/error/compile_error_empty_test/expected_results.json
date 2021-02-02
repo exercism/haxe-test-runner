@@ -1,0 +1,6 @@
+{
+  "version": 2,
+  "status": "error",
+  "tests": null,
+  "message": "Module Test does not define type Test"
+}

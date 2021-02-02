@@ -1,0 +1,14 @@
+{
+    "status": "pass",
+    "tests": [
+        {
+            "name": "identity function of 1",
+            "status": "pass",
+            "output": null,
+            "testCode": "./tmp/haxe_test_runner/Test.hx",
+            "message": null
+        }
+    ],
+    "message": null,
+    "version": 2
+}

@@ -1,0 +1,14 @@
+{
+	"status": "pass",
+	"tests": [
+		{
+			"name": "Say Hi!",
+			"status": "pass",
+			"output": null,
+			"testCode": "./tmp/haxe_test_runner/Test.hx",
+			"message": null
+		}
+	],
+	"message": null,
+	"version": 2
+}
