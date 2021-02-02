@@ -1,0 +1,4 @@
+-main Runner
+-cp src
+-neko bin/runner.n
+-lib buddy
