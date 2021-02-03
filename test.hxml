@@ -1,0 +1,4 @@
+-cp test
+-x RunnerTests
+-lib buddy
+--cwd test

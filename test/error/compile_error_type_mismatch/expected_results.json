@@ -1,6 +1,6 @@
 {
   "version": 2,
   "status": "error",
-  "tests": null,
+  "tests": [],
   "message": "./tmp/haxe_test_runner/Test.hx:9: characters 23-24 : Int should be String\n./tmp/haxe_test_runner/Test.hx:9: characters 23-24 : For function argument 'x'"
 }

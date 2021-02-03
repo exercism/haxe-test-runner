@@ -2,3 +2,6 @@
 -cp src
 -neko bin/runner.n
 -lib buddy
+-r src/Reporter.hx@Reporter
+-r src/RunnerResult.hx@RunnerResult
+-r src/TestResult.hx@TestResult
