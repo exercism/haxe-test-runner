@@ -1,3 +1,4 @@
+# make sure to run build.hxml first as the runner logic depends on runner.n being built
 -cp test
 -x RunnerTests
 -lib buddy

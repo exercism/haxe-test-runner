@@ -14,16 +14,36 @@ using StringTools;
  * A custom reporter to output test results as json conforming to the exercism v3 spec
  */
 class Reporter implements buddy.reporting.Reporter {
-	public function new() {}
+	// the path to output results.json to, currently passed in from the calling process
+	var resultPath:String;
 
+	public function new() {
+		var args = Sys.args();
+		var flagIdx = args.indexOf("-resultPath");
+		resultPath = args[flagIdx + 1];
+	}
+
+	/**
+	 * Called just before tests are run. If promise is resolved with "false",
+	 * testing will immediately exit with status 1.
+	 */
 	public function start():Promise<Bool> {
 		return resolveImmediately(true);
 	}
 
+	/**
+	 * Called for every Spec. Can be used to display realtime notifications.
+	 * Resolve with the same spec as the parameter.
+	 */
 	public function progress(spec:Spec):Promise<Spec> {
 		return resolveImmediately(spec);
 	}
 
+	/**
+	 * Called after the last spec is run. Useful for displaying a test summary.
+	 * Resolve with the same iterable as the parameter.
+	 * Status is true if all tests passed, otherwise false.
+	 */
 	public function done(suites:Iterable<Suite>, status:Bool):Promise<Iterable<Suite>> {
 		var testResults = suites.map(s -> suiteToTestResults(s)).flatten();
 		var resultStatus = status ? ResultStatus.Pass : ResultStatus.Fail();
@@ -31,9 +51,6 @@ class Reporter implements buddy.reporting.Reporter {
 		runnerResult.status = resultStatus;
 		runnerResult.tests = testResults;
 
-		var args = Sys.args();
-		var flagIdx = args.indexOf("-resultPath");
-		var resultPath = args[flagIdx + 1];
 		var resultJson = Json.stringify(runnerResult.toJsonObj(), "\t");
 		File.saveContent(resultPath, resultJson);
 		return resolveImmediately(suites);
