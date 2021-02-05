@@ -63,7 +63,12 @@ Options:
 		if (exitCode != 0)
 			writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
 
-		return exitCode;
+		// Don't return buddy's exit status since that's != 0 if any tests fail
+		// Instead we consider the runner to have succeeded if results.json was created
+		if (FS.exists(paths.outputResults))
+			return 0;
+		else
+			return 1;
 	}
 
 	static function getPaths(args:RunArgs):Paths {
