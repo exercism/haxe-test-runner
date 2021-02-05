@@ -16,7 +16,7 @@ class RunnerResult {
 
 	public var status:ResultStatus;
 	public var message:String;
-	public var tests:Array<TestResult>;
+	public var tests:Array<TestResult> = [];
 
 	public function new() {}
 
@@ -30,7 +30,7 @@ class RunnerResult {
 		return {
 			version: version,
 			status: status.getName().toLowerCase(),
-			tests: [for (t in tests) t.toJsonObj()],
+			tests: tests.map(t -> t.toJsonObj()),
 			message: message
 		};
 	}
