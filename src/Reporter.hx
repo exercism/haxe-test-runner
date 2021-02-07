@@ -70,18 +70,9 @@ class Reporter implements buddy.reporting.Reporter {
 	}
 
 	static function specToTestResult(spec:Spec):TestResult {
-		// Drop leading path in string, leaving file name
-		function stripFolderPath(str:String):String {
-			return str.split("/").pop();
-		}
-		// Drop leading path in string
-		function stripPath(str:String):String {
-			return str.substr(str.indexOf(" ") + 1);
-		}
-
 		var status:ResultStatus;
 		var message:String;
-		var failureErrors = spec.failures.map(f -> stripFolderPath(f.error)).join("\n");
+		var failureErrors = spec.failures.map(f -> f.error.split("/").pop()).join("\n"); // strip folder path
 		switch (spec.status) {
 			case Unknown:
 				status = ResultStatus.Error("");
@@ -99,8 +90,8 @@ class Reporter implements buddy.reporting.Reporter {
 		var code = File.getContent(spec.fileName);
 		var testCode = Extractor.getTestCodeFromSpec(code, spec.description);
 		r.testCode = testCode;
-		var output = spec.traces.map(stripPath).join("\n");
-		r.output = (output.length == 0) ? null : output;
+		var output = spec.traces.map(t -> t.substr(t.indexOf(" ") + 1)).join("\n"); // drop leading path
+		r.output = (output.length == 0) ? null : truncateOutput(output);
 		r.status = status;
 		return r;
 	}
@@ -109,8 +100,8 @@ class Reporter implements buddy.reporting.Reporter {
 		var msg = ' [Output was truncated. Please limit to $maxLen chars]';
 		if (output.length <= maxLen)
 			return output;
-		output = output.substring(0, output.length - msg.length - 1);
-		return output + msg;
+		var truncated = output.substring(0, output.length - msg.length - 1);
+		return truncated + msg;
 	}
 
 	// Convenience method

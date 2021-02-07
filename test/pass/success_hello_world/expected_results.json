@@ -5,7 +5,7 @@
 			"name": "Say Hi!",
 			"status": "pass",
 			"output": null,
-			"testCode": "HelloWorld.hello().should.be(\"Hello,World!\");",
+			"testCode": "HelloWorld.hello().should.be(\"Hello, World!\");",
 			"message": null
 		}
 	],

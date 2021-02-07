@@ -4,7 +4,7 @@
 		{
 			"name": "identity function of 1",
 			"status": "pass",
-			"output": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vulputate ut pharetra sit amet aliquam. Amet dictum sit amet justo donec enim diam vulputate ut. Consequat nisl vel pretium lectus quam id leo. Maecenas accumsan lacus vel facilisis volutpat est velit egestas dui. Faucibus et molestie ac feugiat sed. Fringilla phasellus faucibus scelerisque eleifend donec pretium vulputate sapien nec sagittis",
+			"output": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia non augue nec sodales. Duis a euismod nisi. Aenean auctor quam leo, sit amet mattis orci euismod et. Vivamus accumsan magna id scelerisque molestie. In tempor vel metus et pellentesque. Aliquam porttitor mattis lectus, mattis porta diam feugiat at. Ut imperdiet nibh a auctor convallis. Proin auctor augue cursus, bibendum lorem nec, varius tortor. Proin porttitor ligula risus, fermentum finibus eros porta ut. Proin ornare, justo a sodales pretium, turpis  [Output was truncated. Please limit to 500 chars]",
 			"testCode": "Identity.identity(1).should.be(1);",
 			"message": null
 		}
