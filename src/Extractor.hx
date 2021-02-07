@@ -4,17 +4,23 @@ using StringTools;
 
 /**
  * Helper functions for extracting test_code
+ * TODO: replace with something more robust
  */
 class Extractor {
-	// currently using regex, the idea is to replace this with something more robust later
+	/**
+	 * Extracts the body of a spec from povided code, using its specDescription
+	 * @param code
+	 * @param specDescription
+	 * @return String
+	 */
 	public static function getTestCodeFromSpec(code:String, specDescription:String):String {
 		// regex for buddy's 'it' function
-		var reg = new EReg('it\\("$specDescription", \\{(.+?)\\}\\);', "gms");
+		var reg = new EReg('it\\("$specDescription", \\{(.+?;?)\\}\\);', "gms");
 		if (reg.match(code)) {
 			var match = reg.matched(1);
-			var unspaced = ~/\s*/g.replace(match, "");
-			var formatted = unspaced.split(";").join(";\n");
-			return formatted.trim();
+			var trimmed = ~/[\n\r]+/gms.split(match).map(StringTools.trim);
+			var formatted = trimmed.join("\n").trim();
+			return formatted;
 		}
 		return null;
 	}
