@@ -4,7 +4,7 @@
 		{
 			"name": "identity function of 1",
 			"status": "pass",
-			"output": "Identity.hx:5: hello",
+			"output": "hello",
 			"testCode": "Identity.identity(1).should.be(1);",
 			"message": null
 		}
