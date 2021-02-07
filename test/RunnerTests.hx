@@ -10,15 +10,17 @@ using StringTools;
 using Lambda;
 
 class RunnerTests extends buddy.SingleSuite {
-	static final appDir = Path.directory(Sys.programPath());
-	static final runnerBin = Path.join([appDir, "..", "bin", "runner.n"]);
-
 	public function new() {
+		var args = Sys.args();
+		var flagIdx = args.indexOf("-testsPath");
+		var testsDir = args[flagIdx + 1];
+		var runnerBin = Path.join([testsDir, "..", "bin", "runner.n"]);
+
 		function filterDirs(path)
 			return FS.readDirectory(path).map(x -> Path.join([path, x])).filter(FS.isDirectory);
 
 		for (status in ["error", "pass", "fail"]) {
-			var testsPath = Path.join([appDir, status]);
+			var testsPath = Path.join([testsDir, status]);
 			var testDirs = filterDirs(testsPath);
 			for (testDir in testDirs) {
 				var slug = filterDirs(testDir)[0].split("/").pop();
