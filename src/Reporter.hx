@@ -73,18 +73,18 @@ class Reporter implements buddy.reporting.Reporter {
 		var r = new TestResult();
 		r.name = spec.description;
 		r.testCode = spec.fileName;
+		r.output = spec.traces.join("\n");
+		var failureErrors = spec.failures.map(f -> formatError(f.error)).join("\n");
 		switch (spec.status) {
 			case Unknown:
 				r.status = ResultStatus.Error("");
-				r.message = spec.traces.join("\n");
+				r.message = failureErrors;
 			case Passed:
 				r.status = ResultStatus.Pass;
 			case Pending:
 				r.status = ResultStatus.Pass;
 			case Failed:
 				r.status = ResultStatus.Fail(spec.description);
-				var failureErrors = spec.failures.map(f -> f.error).join("\n");
-				// var failureStacks = spec.failures.map(f -> f.stack).join("\n");
 				r.message = failureErrors;
 				// r.output = ""; probably easier to have the calling process capture it and inject into results
 		}
