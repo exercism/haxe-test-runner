@@ -70,25 +70,34 @@ class Reporter implements buddy.reporting.Reporter {
 	}
 
 	static function specToTestResult(spec:Spec):TestResult {
-		var r = new TestResult();
-		r.name = spec.description;
-		r.testCode = spec.fileName;
-		r.output = spec.traces.join("\n");
+		var status:ResultStatus;
+		var message:String;
 		var failureErrors = spec.failures.map(f -> formatError(f.error)).join("\n");
 		switch (spec.status) {
 			case Unknown:
-				r.status = ResultStatus.Error("");
-				r.message = failureErrors;
+				status = ResultStatus.Error("");
+				message = failureErrors;
 			case Passed:
-				r.status = ResultStatus.Pass;
+				status = ResultStatus.Pass;
 			case Pending:
-				r.status = ResultStatus.Pass;
+				status = ResultStatus.Pass;
 			case Failed:
-				r.status = ResultStatus.Fail(spec.description);
-				r.message = failureErrors;
-				// r.output = ""; probably easier to have the calling process capture it and inject into results
+				status = ResultStatus.Fail(spec.description);
+				message = failureErrors;
 		}
+		var r = new TestResult();
+		r.name = spec.description;
+		var code = File.getContent(spec.fileName);
+		var testCode = Extractor.getTestCodeFromSpec(code, spec.description);
+		r.testCode = testCode;
+		r.output = spec.traces.join("\n");
+		r.status = status;
 		return r;
+	}
+
+	static function formatError(e:String):String {
+		// strip leading path, leaving file name
+		return e.split("/").pop();
 	}
 
 	// Convenience method
