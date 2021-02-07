@@ -31,7 +31,9 @@ class RunnerTests extends buddy.SingleSuite {
 					Path.addTrailingSlash(outputDir)
 				]);
 				var exitCode = runnerProc.exitCode();
-				trace(runnerProc.stderr.readAll().toString());
+				var error = runnerProc.stderr.readAll().toString();
+				if (error.length != 0)
+					trace(error);
 				runnerProc.close();
 
 				var testName = testDir.split("/").pop();

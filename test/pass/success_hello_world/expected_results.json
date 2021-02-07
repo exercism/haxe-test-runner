@@ -5,7 +5,7 @@
 			"name": "Say Hi!",
 			"status": "pass",
 			"output": null,
-			"testCode": "./tmp/haxe_test_runner/Test.hx",
+			"testCode": "HelloWorld.hello().should.be(\"Hello,World!\");",
 			"message": null
 		}
 	],
