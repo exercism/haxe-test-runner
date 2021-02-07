@@ -58,17 +58,13 @@ Options:
 		var errorResult = proc.stderr.readAll().toString();
 		var exitCode = proc.exitCode();
 		proc.close();
-		// TODO: append user output to results
 
 		if (exitCode != 0)
 			writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
 
 		// Don't return buddy's exit status since that's != 0 if any tests fail
 		// Instead we consider the runner to have succeeded if results.json was created
-		if (FS.exists(paths.outputResults))
-			return 0;
-		else
-			return 1;
+		return FS.exists(paths.outputResults) ? 0 : 1;
 	}
 
 	static function getPaths(args:RunArgs):Paths {
@@ -100,9 +96,11 @@ Options:
 		var reporter = Resource.getString("Reporter");
 		var runnerResult = Resource.getString("RunnerResult");
 		var testResult = Resource.getString("TestResult");
+		var extractor = Resource.getString("Extractor");
 		File.saveContent('${paths.tmpDir}/Reporter.hx', reporter);
 		File.saveContent('${paths.tmpDir}/RunnerResult.hx', runnerResult);
 		File.saveContent('${paths.tmpDir}/TestResult.hx', testResult);
+		File.saveContent('${paths.tmpDir}/Extractor.hx', extractor);
 	}
 
 	static function createTmpDir():String {

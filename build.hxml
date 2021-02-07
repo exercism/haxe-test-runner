@@ -5,3 +5,4 @@
 --resource src/Reporter.hx@Reporter
 --resource src/RunnerResult.hx@RunnerResult
 --resource src/TestResult.hx@TestResult
+--resource src/Extractor.hx@Extractor
