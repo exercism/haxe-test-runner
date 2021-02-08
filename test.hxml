@@ -1,3 +1,3 @@
 # run build.hxml first as the runner uses the resulting runner.n
 build.hxml
---cmd haxe -cp ./test -L buddy --run RunnerTests -testsPath ./test
+--cmd haxe -cp ./test -cp ./src -L buddy --run RunnerTests -testsPath ./test
