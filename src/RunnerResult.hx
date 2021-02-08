@@ -23,8 +23,10 @@ class RunnerResult {
 	public function toJsonObj():Dynamic {
 		var message:String = null;
 		switch (status) {
+			// Extract ResultStatus msg to message field when found
 			case Fail(msg), Error(msg):
-				message = msg;
+				// strip folder path
+				message = msg.split("\n").map(s -> s.split("/").pop()).join("\n");
 			case Pass:
 		}
 		return {

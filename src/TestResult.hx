@@ -15,12 +15,31 @@ class TestResult {
 	public function new() {}
 
 	public function toJsonObj():Dynamic {
-		return {
+		var cleanedOutput:String = null;
+		if (output != null)
+			// drop leading path
+			cleanedOutput = output.split("\n").map(t -> t.substr(t.indexOf(" ") + 1)).join("\n");
+		var cleanedMessage:String = null;
+		if (message != null)
+			// strip folder path
+			cleanedMessage = message.split("\n").map(s -> s.split("/").pop()).join("\n");
+		var x = {
 			name: name,
 			status: status.getName().toLowerCase(),
-			message: message,
-			output: output,
+			message: cleanedMessage,
+			output: truncateOutput(cleanedOutput),
 			testCode: testCode
 		};
+		return x;
+	}
+
+	static function truncateOutput(output:String, maxLen = 500):String {
+		if (output == null)
+			return null;
+		var msg = ' [Output was truncated. Please limit to $maxLen chars]';
+		if (output.length <= maxLen)
+			return output;
+		var truncated = output.substring(0, output.length - msg.length - 1);
+		return truncated + msg;
 	}
 }

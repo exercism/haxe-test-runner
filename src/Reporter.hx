@@ -45,11 +45,9 @@ class Reporter implements buddy.reporting.Reporter {
 	 * Status is true if all tests passed, otherwise false.
 	 */
 	public function done(suites:Iterable<Suite>, status:Bool):Promise<Iterable<Suite>> {
-		var testResults = suites.map(s -> suiteToTestResults(s)).flatten();
-		var resultStatus = status ? ResultStatus.Pass : ResultStatus.Fail();
 		var runnerResult = new RunnerResult();
-		runnerResult.status = resultStatus;
-		runnerResult.tests = testResults;
+		runnerResult.status = status ? ResultStatus.Pass : ResultStatus.Fail();
+		runnerResult.tests = suites.map(s -> suiteToTestResults(s)).flatten();
 
 		var resultJson = Json.stringify(runnerResult.toJsonObj(), "\t");
 		File.saveContent(resultPath, resultJson);
@@ -71,37 +69,29 @@ class Reporter implements buddy.reporting.Reporter {
 
 	static function specToTestResult(spec:Spec):TestResult {
 		var status:ResultStatus;
-		var message:String;
-		var failureErrors = spec.failures.map(f -> f.error.split("/").pop()).join("\n"); // strip folder path
 		switch (spec.status) {
 			case Unknown:
 				status = ResultStatus.Error("");
-				message = failureErrors;
 			case Passed:
 				status = ResultStatus.Pass;
 			case Pending:
 				status = ResultStatus.Pass;
 			case Failed:
-				status = ResultStatus.Fail(spec.description);
-				message = failureErrors;
+				status = ResultStatus.Fail();
 		}
 		var r = new TestResult();
-		r.name = spec.description;
-		var code = File.getContent(spec.fileName);
-		var testCode = Extractor.getTestCodeFromSpec(code, spec.description);
-		r.testCode = testCode;
-		var output = spec.traces.map(t -> t.substr(t.indexOf(" ") + 1)).join("\n"); // drop leading path
-		r.output = (output.length == 0) ? null : truncateOutput(output);
 		r.status = status;
-		return r;
-	}
+		r.name = spec.description;
 
-	static function truncateOutput(output:String, maxLen = 500):String {
-		var msg = ' [Output was truncated. Please limit to $maxLen chars]';
-		if (output.length <= maxLen)
-			return output;
-		var truncated = output.substring(0, output.length - msg.length - 1);
-		return truncated + msg;
+		var code = File.getContent(spec.fileName);
+		r.testCode = Extractor.getTestCodeFromSpec(code, spec.description);
+
+		var output = spec.traces.join("\n");
+		r.output = (output.length == 0) ? null : output;
+
+		var errorMsg = spec.failures.join("\n");
+		r.message = (errorMsg.length == 0) ? null : errorMsg;
+		return r;
 	}
 
 	// Convenience method
