@@ -58,6 +58,7 @@ Options:
 		var errorResult = proc.stderr.readAll().toString();
 		var exitCode = proc.exitCode();
 		proc.close();
+		FileTools.deleteDirRecursively(paths.tmpDir);
 
 		if (exitCode != 0)
 			writeTopLevelErrorJson(paths.outputResults, errorResult.trim());

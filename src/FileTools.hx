@@ -1,15 +1,19 @@
+import sys.FileSystem as FS;
+
 class FileTools {
 	public static function deleteDirRecursively(path:String) {
-		if (sys.FileSystem.exists(path) && sys.FileSystem.isDirectory(path)) {
-			var entries = sys.FileSystem.readDirectory(path);
+		if (FS.exists(path) && FS.isDirectory(path)) {
+			var entries = FS.readDirectory(path);
 			for (entry in entries) {
-				if (sys.FileSystem.isDirectory(path + '/' + entry)) {
-					deleteDirRecursively(path + '/' + entry);
-					sys.FileSystem.deleteDirectory(path + '/' + entry);
+				if (FS.isDirectory('$path/$entry')) {
+					deleteDirRecursively('$path/$entry');
+					FS.deleteDirectory('$path/$entry');
 				} else {
-					sys.FileSystem.deleteFile(path + '/' + entry);
+					FS.deleteFile('$path/$entry');
 				}
 			}
+			// delete root dir
+			FS.deleteDirectory(path);
 		}
 	}
 }
