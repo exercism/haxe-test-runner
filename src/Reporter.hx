@@ -71,11 +71,11 @@ class Reporter implements buddy.reporting.Reporter {
 		var status:ResultStatus;
 		switch (spec.status) {
 			case Unknown:
-				status = ResultStatus.Error("");
+				status = ResultStatus.Fail();
 			case Passed:
 				status = ResultStatus.Pass;
 			case Pending:
-				status = ResultStatus.Pass;
+				status = ResultStatus.Fail();
 			case Failed:
 				status = ResultStatus.Fail();
 		}

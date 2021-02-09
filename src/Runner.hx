@@ -60,8 +60,10 @@ Options:
 		proc.close();
 		FileTools.deleteDirRecursively(paths.tmpDir);
 
-		if (exitCode != 0)
-			writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
+		// since buddy returns non-zero on test fail, we're not able to distinguish between
+		// run errors and test failure
+		// if (exitCode != 0)
+		// 	writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
 
 		// Don't return buddy's exit status since that's != 0 if any tests fail
 		// Instead we consider the runner to have succeeded if results.json was created
