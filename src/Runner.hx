@@ -60,14 +60,12 @@ Options:
 		proc.close();
 		FileTools.deleteDirRecursively(paths.tmpDir);
 
-		// since buddy returns non-zero on test fail, we're not able to distinguish between
-		// run errors and test failure
-		// if (exitCode != 0)
-		// 	writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
+		// Buddy returns non-zero on test fail so we ignore its exit code
+		// We detect failure either through stderror or results not being created
+		if (!FS.exists(paths.outputResults) || errorResult.length > 0)
+			writeTopLevelErrorJson(paths.outputResults, errorResult.trim());
 
-		// Don't return buddy's exit status since that's != 0 if any tests fail
-		// Instead we consider the runner to have succeeded if results.json was created
-		return FS.exists(paths.outputResults) ? 0 : 1;
+		return 0;
 	}
 
 	static function getPaths(args:RunArgs):Paths {
