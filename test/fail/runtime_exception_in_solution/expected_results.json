@@ -5,7 +5,7 @@
       "name": "identity function of 1",
       "status": "fail",
       "output": null,
-      "testCode": "./tmp/haxe_test_runner/Test.hx",
+      "testCode": "Identity.identity(1).should.be(1);",
       "message": "runtime exception"
     }
   ],

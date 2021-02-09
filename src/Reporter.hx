@@ -89,7 +89,7 @@ class Reporter implements buddy.reporting.Reporter {
 		var output = spec.traces.join("\n");
 		r.output = (output.length == 0) ? null : output;
 
-		var errorMsg = spec.failures.join("\n");
+		var errorMsg = spec.failures.map(f -> f.error).join("\n");
 		r.message = (errorMsg.length == 0) ? null : errorMsg;
 		return r;
 	}

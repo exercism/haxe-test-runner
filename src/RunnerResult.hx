@@ -26,7 +26,8 @@ class RunnerResult {
 			// Extract ResultStatus msg to message field when found
 			case Fail(msg), Error(msg):
 				// strip folder path
-				message = msg.split("\n").map(s -> s.split("/").pop()).join("\n");
+				if (msg != null)
+					message = msg.split("\n").map(s -> s.split("/").pop()).join("\n");
 			case Pass:
 		}
 		return {
