@@ -150,6 +150,8 @@ Options:
 			writeError("inputDir must end with a trailing slash");
 		if (outputDir.charAt(outputDir.length - 1) != "/")
 			writeError("outputDir must end with a trailing slash");
+		if (Path.isAbsolute(inputDir) || Path.isAbsolute(outputDir))
+			writeError("inputDir and outputDir paths must be relative");
 		if (!FS.exists(inputDir))
 			writeError('inputDir "$inputDir" does not exist');
 
