@@ -15,6 +15,7 @@ class RunnerTests extends buddy.SingleSuite {
 		var flagIdx = args.indexOf("-testsPath");
 		var testsDir = args[flagIdx + 1];
 		var runnerBin = Path.join([testsDir, "..", "bin", "runner.n"]);
+		var outputDirs = []; // keep track of outputDirs to remove after suite completion
 
 		function filterDirs(path)
 			return FS.readDirectory(path).map(x -> Path.join([path, x])).filter(FS.isDirectory);
@@ -56,9 +57,13 @@ class RunnerTests extends buddy.SingleSuite {
 						Json.stringify(actualResults).should.be(Json.stringify(expectedResults));
 					});
 				});
-				// cleanup
-				// FileTools.deleteDirRecursively(outputDir);
+				outputDirs.push(outputDir);
 			}
 		}
+		// clean up outputDirs
+		afterAll({
+			for (dir in outputDirs)
+				FileTools.deleteDirRecursively(dir);
+		});
 	}
 }
