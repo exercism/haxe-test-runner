@@ -18,9 +18,9 @@ class SUT extends buddy.SingleSuit {
 		var tmpl = new haxe.Template(testSample);
 
 		describe("getTestCodeFromSpec function", {
-			it("returns null when spec is not found", {
+			it("throws exceptin when spec is not found", {
 				var code = tmpl.execute({specs: null});
-				getTestCodeFromSpec(code, "non-existing spec").should.be(null);
+				getTestCodeFromSpec.bind(code, "non-existing spec").should.throwType(String);
 			});
 
 			it("returns body of single statement spec", {
@@ -128,6 +128,22 @@ it("spec", {
 					"2.should.be( 2 );",
 					"// comment  3"
 				];
+				getTestCodeFromSpec(code, "spec").should.be(expected.join("\n"));
+			});
+
+			it("can extract arbitrary code", {
+				var specs = '
+it("spec", {
+	var xs = [
+		for (y in ys)
+			if (fun(y))
+				y
+	];
+    1.should.be(1);
+});';
+
+				var code = tmpl.execute({specs: specs});
+				var expected = ["var xs = [", "for (y in ys)", "if (fun(y))", "y", "];", "1.should.be(1);"];
 				getTestCodeFromSpec(code, "spec").should.be(expected.join("\n"));
 			});
 		});
