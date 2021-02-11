@@ -9,6 +9,7 @@ using StringTools;
 class Extractor {
 	/**
 	 * Extracts the body of a spec from povided code, using its specDescription
+	 * This assumes that specDescriptions are unique, which is not enforced by Buddy
 	 * @param code
 	 * @param specDescription
 	 * @return String
@@ -22,6 +23,6 @@ class Extractor {
 			var formatted = trimmed.join("\n").trim();
 			return formatted;
 		}
-		return null;
+		throw 'Spec description not found: $specDescription';
 	}
 }

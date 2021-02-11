@@ -1,0 +1,21 @@
+{
+    "status": "pass",
+    "tests": [
+        {
+            "name": "identity function of 0",
+            "status": "pass",
+            "output": null,
+            "testCode": "Identity.identity(0).should.be(0);",
+            "message": null
+        },
+        {
+            "name": "identity function of 1",
+            "status": "pass",
+            "output": null,
+            "testCode": "Identity.identity(1).should.be(1);",
+            "message": null
+        }
+    ],
+    "message": null,
+    "version": 2
+}

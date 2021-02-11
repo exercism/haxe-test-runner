@@ -41,7 +41,7 @@ class RunnerTests extends buddy.SingleSuite {
 				var testName = testDir.split("/").pop();
 				var resultFile = Path.join([outputDir, "results.json"]);
 				var resultWasOutput = FS.exists(resultFile);
-				var expectedExitCode = resultWasOutput ? 0 : 1;
+				var expectedExitCode = (error.length == 0 && resultWasOutput) ? 0 : 1;
 				describe(testName, {
 					it('exit code should be $expectedExitCode', {
 						exitCode.should.be(expectedExitCode);
