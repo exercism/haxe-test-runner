@@ -131,7 +131,7 @@ it("spec", {
 				getTestCodeFromSpec(code, "spec").should.be(expected.join("\n"));
 			});
 
-			it("can extract arbitrary code", {
+			it("can extract multiline expressions", {
 				var specs = '
 it("spec", {
 	var xs = [
@@ -145,6 +145,17 @@ it("spec", {
 				var code = tmpl.execute({specs: specs});
 				var expected = ["var xs = [", "for (y in ys)", "if (fun(y))", "y", "];", "1.should.be(1);"];
 				getTestCodeFromSpec(code, "spec").should.be(expected.join("\n"));
+			});
+
+			it("escapes special chars in specDescription", {
+				var specs = '
+it("({[.+,-;]})", {
+    1.should.be(1);
+});';
+
+				var code = tmpl.execute({specs: specs});
+				var expected = "1.should.be(1);";
+				getTestCodeFromSpec(code, "({[.+,-;]})").should.be(expected);
 			});
 		});
 	}
