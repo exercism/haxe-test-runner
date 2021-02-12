@@ -36,10 +36,10 @@ class TestResult {
 	static function truncateOutput(output:String, maxLen = 500):String {
 		if (output == null)
 			return null;
-		var msg = ' [Output was truncated. Please limit to $maxLen chars]';
+		var msg = '...\n[Output was truncated. Please limit to $maxLen chars]';
 		if (output.length <= maxLen)
 			return output;
-		var truncated = output.substring(0, output.length - msg.length - 1);
+		var truncated = output.substr(0, maxLen);
 		return truncated + msg;
 	}
 }
