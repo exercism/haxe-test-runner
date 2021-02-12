@@ -20,6 +20,7 @@ class RunnerTests extends buddy.SingleSuite {
 		function filterDirs(path)
 			return FS.readDirectory(path).map(x -> Path.join([path, x])).filter(FS.isDirectory);
 
+		// traverse each directory, running contained tests and comparing result to expected_results.json
 		for (status in ["error", "pass", "fail"]) {
 			var testsPath = Path.join([testsDir, status]);
 			var testDirs = filterDirs(testsPath);

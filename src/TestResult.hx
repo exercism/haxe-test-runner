@@ -23,22 +23,22 @@ class TestResult {
 		if (message != null)
 			// strip folder path
 			cleanedMessage = message.split("\n").map(s -> s.split("/").pop()).join("\n");
-		var x = {
+		return {
 			name: name,
 			status: status.getName().toLowerCase(),
 			message: cleanedMessage,
 			output: truncateOutput(cleanedOutput),
 			testCode: testCode
 		};
-		return x;
 	}
 
 	static function truncateOutput(output:String, maxLen = 500):String {
 		if (output == null)
 			return null;
-		var msg = '...\n[Output was truncated. Please limit to $maxLen chars]';
 		if (output.length <= maxLen)
 			return output;
+
+		var msg = '...\n[Output was truncated. Please limit to $maxLen chars]';
 		var truncated = output.substr(0, maxLen);
 		return truncated + msg;
 	}

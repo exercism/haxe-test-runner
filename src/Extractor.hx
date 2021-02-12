@@ -9,10 +9,6 @@ using StringTools;
  * TODO: replace with something more robust
  */
 class Extractor {
-	public static function main() {
-		trace(getTestCodeFromSpec("", ""));
-	}
-
 	/**
 	 * Extracts the body of a spec from povided code, using its specDescription
 	 * This assumes that specDescriptions are unique, which is not enforced by Buddy

@@ -9,7 +9,7 @@ enum ResultStatus {
 }
 
 /**
- * Result object returned for runner invocation
+ * Top-level result object returned for runner invocation
  */
 class RunnerResult {
 	final version = 2;

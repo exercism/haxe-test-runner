@@ -8,9 +8,8 @@ class FileTools {
 				if (FS.isDirectory('$path/$entry')) {
 					deleteDirRecursively('$path/$entry');
 					FS.deleteDirectory('$path/$entry');
-				} else {
+				} else
 					FS.deleteFile('$path/$entry');
-				}
 			}
 			// delete root dir
 			FS.deleteDirectory(path);
