@@ -4,3 +4,4 @@ test/output
 .github
 .gitignore
 .gitattributes
+.dockerignore
