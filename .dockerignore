@@ -2,3 +2,4 @@ test/output
 .appends
 .git
 .github
+.gitignore
