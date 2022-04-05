@@ -16,5 +16,3 @@ echo "${slug}: testing..."
 neko bin/runner.n $slug $solution_dir/ $output_dir/
 
 echo "${slug}: done"
-
-cat solution/success_single/results.json
