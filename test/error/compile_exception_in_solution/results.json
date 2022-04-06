@@ -1,6 +1,0 @@
-{
-	"version": 2,
-	"status": "error",
-	"tests": [],
-	"message": "CompileExceptionInSolution.hx:4: characters 17-22 : Uncaught exception compile exception"
-}

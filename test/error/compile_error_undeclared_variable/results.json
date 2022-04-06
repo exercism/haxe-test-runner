@@ -1,6 +1,0 @@
-{
-	"version": 2,
-	"status": "error",
-	"tests": [],
-	"message": "CompileErrorUndeclaredVariable.hx:5: characters 3-4 : Unknown identifier : y"
-}

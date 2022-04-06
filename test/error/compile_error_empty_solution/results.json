@@ -1,6 +1,0 @@
-{
-	"version": 2,
-	"status": "error",
-	"tests": [],
-	"message": "Test.hx:9: characters 5-30 : Module CompileErrorEmptySolution does not define type CompileErrorEmptySolution"
-}
