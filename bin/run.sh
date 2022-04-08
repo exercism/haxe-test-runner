@@ -1,26 +1,18 @@
-#! /bin/sh
-set -e
+#!/usr/bin/env bash
 
-SLUG="$1"
-INPUT_DIR="$2"
-OUTPUT_DIR="$3"
+# If any required arguments is missing, print the usage and exit
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+    echo "usage: ./bin/run.sh exercise-slug path/to/solution/folder/ path/to/output/directory/"
+    exit 1
+fi
 
-echo "$SLUG: testing..."
-# PLACEHOLDER - Insert call to run your language tests here
+slug="$1"
+solution_dir="${2%/}"
+output_dir="${3%/}"
+results_file="${output_dir}/results.json"
 
-echo "$SLUG: processing test output in $INPUT_DIR..."
-# PLACEHOLDER - OPTIONAL: Your language may support outputting results
-#   in the correct format
+echo "${slug}: testing..."
 
-# Create $OUTPUT_DIR if it doesn't exist
-[ -d "$OUTPUT_DIR" ] || mkdir -p "$OUTPUT_DIR"
+neko bin/runner.n $slug $solution_dir/ $output_dir/
 
-echo "$SLUG: copying processed results to $OUTPUT_DIR..."
-# PLACEHOLDER - OPTIONAL: Your language may support placing results
-#   directly in $OUTPUT_DIR
-cp "${INPUT_DIR}/results.json" "$OUTPUT_DIR"
-
-echo "$SLUG: comparing ${OUTPUT_DIR}/results"
-diff "${INPUT_DIR}/results.json" "${OUTPUT_DIR}/results.json"
-
-echo "$SLUG: OK"
+echo "${slug}: done"

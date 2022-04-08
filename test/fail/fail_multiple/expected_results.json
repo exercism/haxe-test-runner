@@ -1,35 +1,35 @@
 {
-    "status": "fail",
-    "tests": [
-        {
-            "name": "identity function of 1",
-            "status": "fail",
-            "output": null,
-            "testCode": "Identity.funA(1).should.be(1);",
-            "message": "Expected 1, was -1"
-        },
-        {
-            "name": "identity function of 1",
-            "status": "fail",
-            "output": null,
-            "testCode": "Identity.funA(1).should.be(1);",
-            "message": "Expected 2, was -2"
-        },
-        {
-            "name": "identity function of 1",
-            "status": "pass",
-            "output": null,
-            "testCode": "Identity.funA(1).should.be(1);",
-            "message": null
-        },
-        {
-            "name": "identity function of 1",
-            "status": "fail",
-            "output": null,
-            "testCode": "Identity.funA(1).should.be(1);",
-            "message": "Expected 2, was 4"
-        }
-    ],
-    "message": null,
-    "version": 2
+	"status": "fail",
+	"tests": [
+		{
+			"name": "identity function of 1",
+			"status": "fail",
+			"output": null,
+			"testCode": "FailMultiple.funA(1).should.be(1);",
+			"message": "Expected 1, was -1"
+		},
+		{
+			"name": "identity function of 1",
+			"status": "fail",
+			"output": null,
+			"testCode": "FailMultiple.funA(1).should.be(1);",
+			"message": "Expected 2, was -2"
+		},
+		{
+			"name": "identity function of 1",
+			"status": "pass",
+			"output": null,
+			"testCode": "FailMultiple.funA(1).should.be(1);",
+			"message": null
+		},
+		{
+			"name": "identity function of 1",
+			"status": "fail",
+			"output": null,
+			"testCode": "FailMultiple.funA(1).should.be(1);",
+			"message": "Expected 2, was 4"
+		}
+	],
+	"message": null,
+	"version": 2
 }

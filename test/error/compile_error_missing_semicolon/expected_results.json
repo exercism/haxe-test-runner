@@ -1,6 +1,6 @@
 {
-  "version": 2,
-  "status": "error",
-  "tests": [],
-  "message": "Identity.hx:6: characters 2-3 : Missing ;"
+	"version": 2,
+	"status": "error",
+	"tests": [],
+	"message": "CompileErrorMissingSemicolon.hx:6: characters 2-3 : Missing ;"
 }

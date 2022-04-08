@@ -5,7 +5,7 @@
 			"name": "identity function of 1",
 			"status": "fail",
 			"output": "hello",
-			"testCode": "Identity.identity(1).should.be(0);",
+			"testCode": "FailHasStdout.identity(1).should.be(0);",
 			"message": "Expected 0, was 1"
 		}
 	],

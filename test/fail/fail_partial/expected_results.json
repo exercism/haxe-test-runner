@@ -1,21 +1,21 @@
 {
-    "status": "fail",
-    "tests": [
-        {
-            "name": "identity function of 0",
-            "status": "fail",
-            "output": null,
-            "testCode": "Identity.identity(0).should.be(1);",
-            "message": "Expected 1, was 0"
-        },
-        {
-            "name": "identity function of 1",
-            "status": "pass",
-            "output": null,
-            "testCode": "Identity.identity(1).should.be(1);",
-            "message": null
-        }
-    ],
-    "message": null,
-    "version": 2
+	"status": "fail",
+	"tests": [
+		{
+			"name": "identity function of 0",
+			"status": "fail",
+			"output": null,
+			"testCode": "FailPartial.identity(0).should.be(1);",
+			"message": "Expected 1, was 0"
+		},
+		{
+			"name": "identity function of 1",
+			"status": "pass",
+			"output": null,
+			"testCode": "FailPartial.identity(1).should.be(1);",
+			"message": null
+		}
+	],
+	"message": null,
+	"version": 2
 }

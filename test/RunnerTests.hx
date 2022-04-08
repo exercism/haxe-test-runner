@@ -27,7 +27,7 @@ class RunnerTests extends buddy.SingleSuite {
 			for (testDir in testDirs) {
 				var slug = filterDirs(testDir)[0].split("/").pop();
 				var inputDir = Path.join([testDir, slug]);
-				var outputDir = Path.join([testDir, "output"]);
+				var outputDir = testDir; // Path.join([testDir, "output"]);
 				var runnerProc = new sys.io.Process("neko", [
 					runnerBin,
 					slug,
