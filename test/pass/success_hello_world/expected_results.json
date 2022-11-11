@@ -1,14 +1,14 @@
 {
-	"status": "pass",
-	"tests": [
-		{
-			"name": "Say Hi!",
-			"status": "pass",
-			"output": null,
-			"testCode": "SuccessHelloWorld.hello().should.be(\"Hello, World!\");",
-			"message": null
-		}
-	],
-	"message": null,
-	"version": 2
+  "status": "pass",
+  "tests": [
+    {
+      "name": "Say Hi!",
+      "status": "pass",
+      "output": null,
+      "test_code": "SuccessHelloWorld.hello().should.be(\"Hello, World!\");",
+      "message": null
+    }
+  ],
+  "message": null,
+  "version": 2
 }

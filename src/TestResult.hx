@@ -28,7 +28,7 @@ class TestResult {
 			status: status.getName().toLowerCase(),
 			message: cleanedMessage,
 			output: truncateOutput(cleanedOutput),
-			testCode: testCode
+			test_code: testCode
 		};
 	}
 

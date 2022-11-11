@@ -1,14 +1,14 @@
 {
-	"status": "pass",
-	"tests": [
-		{
-			"name": "identity function of 1",
-			"status": "pass",
-			"output": "hello",
-			"testCode": "SuccessHasStdout.identity(1).should.be(1);",
-			"message": null
-		}
-	],
-	"message": null,
-	"version": 2
+  "status": "pass",
+  "tests": [
+    {
+      "name": "identity function of 1",
+      "status": "pass",
+      "output": "hello",
+      "test_code": "SuccessHasStdout.identity(1).should.be(1);",
+      "message": null
+    }
+  ],
+  "message": null,
+  "version": 2
 }
