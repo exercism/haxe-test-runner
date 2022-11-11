@@ -1,14 +1,14 @@
 {
-	"status": "fail",
-	"tests": [
-		{
-			"name": "identity function of 1",
-			"status": "fail",
-			"output": null,
-			"testCode": "FailSingle.identity(1).should.be(1);",
-			"message": "Expected 1, was null"
-		}
-	],
-	"message": null,
-	"version": 2
+  "status": "fail",
+  "tests": [
+    {
+      "name": "identity function of 1",
+      "status": "fail",
+      "output": null,
+      "test_code": "FailSingle.identity(1).should.be(1);",
+      "message": "Expected 1, was null"
+    }
+  ],
+  "message": null,
+  "version": 2
 }

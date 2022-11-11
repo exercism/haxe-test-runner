@@ -1,21 +1,21 @@
 {
-	"status": "pass",
-	"tests": [
-		{
-			"name": "identity function of 0",
-			"status": "pass",
-			"output": null,
-			"testCode": "SuccessMultiple.identity(0).should.be(0);",
-			"message": null
-		},
-		{
-			"name": "identity function of 1",
-			"status": "pass",
-			"output": null,
-			"testCode": "SuccessMultiple.identity(1).should.be(1);",
-			"message": null
-		}
-	],
-	"message": null,
-	"version": 2
+  "status": "pass",
+  "tests": [
+    {
+      "name": "identity function of 0",
+      "status": "pass",
+      "output": null,
+      "test_code": "SuccessMultiple.identity(0).should.be(0);",
+      "message": null
+    },
+    {
+      "name": "identity function of 1",
+      "status": "pass",
+      "output": null,
+      "test_code": "SuccessMultiple.identity(1).should.be(1);",
+      "message": null
+    }
+  ],
+  "message": null,
+  "version": 2
 }
