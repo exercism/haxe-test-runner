@@ -2,6 +2,7 @@
 -cp src
 -neko bin/runner.n
 -lib buddy
+-lib datetime
 --resource src/Reporter.hx@Reporter
 --resource src/RunnerResult.hx@RunnerResult
 --resource src/TestResult.hx@TestResult
