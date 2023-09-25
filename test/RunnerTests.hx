@@ -115,7 +115,11 @@ class RunnerTests extends buddy.SingleSuite {
 		afterAll({
 			for (dir in outputDirs) {
 				var resultFile = Path.join([dir, "results.json"]);
-				FS.deleteFile(resultFile);
+				if(FS.exists(resultFile)) {
+					FS.deleteFile(resultFile);
+				} else {
+					trace('File already deleted: $resultFile');
+				}
 			}
 		});
 	}
