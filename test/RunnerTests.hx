@@ -11,8 +11,7 @@ using StringTools;
 using Lambda;
 
 class RunnerTests extends buddy.SingleSuite {
-	// Get all directories in a path
-	private function filterDirs(path) {
+	private function listDirectoriesInPath(path) {
 		return FS.readDirectory(path)
 			.map(item -> Path.join([path, item]))
 			.filter(FS.isDirectory);
@@ -28,16 +27,19 @@ class RunnerTests extends buddy.SingleSuite {
 		// traverse each directory, running contained tests and comparing result to expected_results.json
 		for (status in ["error", "pass", "fail"]) {
 			var testsPath = Path.join([testsDir, status]);
-			var testDirs = filterDirs(testsPath);
+			var testDirs = listDirectoriesInPath(testsPath);
 			
 			for (testDir in testDirs) {
+				// Get trailing portion of the path as the test slug
+				var slug = Path.removeTrailingSlashes(testDir).split('/').pop();
 				var inputDir = Path.join([testDir, "src"]);
 				var outputDir = testDir;
-				
+
 				var runnerProc = new sys.io.Process("neko", [
 					runnerBin,
+					slug,
 					inputDir,
-					testDir
+					outputDir
 				]);
 				
 				var exitCode = runnerProc.exitCode();
@@ -110,9 +112,11 @@ class RunnerTests extends buddy.SingleSuite {
 			}
 		}
 		// clean up outputDirs
-		// afterAll({
-		// 	for (dir in outputDirs)
-		// 		FileTools.deleteDirRecursively(dir);
-		// });
+		afterAll({
+			for (dir in outputDirs) {
+				var resultFile = Path.join([dir, "results.json"]);
+				FS.deleteFile(resultFile);
+			}
+		});
 	}
 }
