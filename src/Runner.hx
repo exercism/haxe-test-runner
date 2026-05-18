@@ -92,7 +92,10 @@ Options:
 	static function prepareOutputDir(paths:Paths) {
 		FS.createDirectory(paths.outputDir);
 		File.copy(paths.inputSolution, paths.tmpSolution);
-		File.copy(paths.inputTest, paths.tmpTest);
+		// Run any skipped (xit) Buddy specs by rewriting them to it(...).
+		var testContent = File.getContent(paths.inputTest);
+		testContent = ~/\bxit\(/g.replace(testContent, "it(");
+		File.saveContent(paths.tmpTest, testContent);
 		// copy custom reporter with dependencies to outputDir
 		var reporter = Resource.getString("Reporter");
 		var runnerResult = Resource.getString("RunnerResult");

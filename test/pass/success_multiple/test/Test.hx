@@ -8,7 +8,7 @@ class Test extends buddy.SingleSuite {
 			it("identity function of 0", {
 				SuccessMultiple.identity(0).should.be(0);
 			});
-			it("identity function of 1", {
+			xit("identity function of 1", {
 				SuccessMultiple.identity(1).should.be(1);
 			});
 		});

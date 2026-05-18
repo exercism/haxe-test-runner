@@ -8,10 +8,10 @@ class Test extends buddy.SingleSuite {
 			it("identity function of 1", {
 				FailMultiple.funA(1).should.be(1);
 			});
-			it("identity function of 1", {
+			xit("identity function of 1", {
 				FailMultiple.funA(2).should.be(2);
 			});
-			it("identity function of 1", {
+			xit("identity function of 1", {
 				FailMultiple.funB(1).should.be(1);
 			});
 			it("identity function of 1", {
