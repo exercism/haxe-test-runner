@@ -19,7 +19,7 @@ docker build --rm -t exercism/haxe-test-runner .
 docker run \
     --rm \
     --network none \
-    --mount type=bind,src="${PWD}/test",dst=/opt/test-runner/tests \
+    --mount type=bind,src="${PWD}/test",dst=/opt/test-runner/test \
     --mount type=tmpfs,dst=/tmp \
     --volume "${PWD}/bin/run-tests.sh:/opt/test-runner/bin/run-tests.sh" \
     --workdir /opt/test-runner \
