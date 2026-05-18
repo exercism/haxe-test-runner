@@ -1,6 +1,6 @@
 FROM haxe:4.2-alpine
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash jq
 
 COPY . /opt/test-runner
 WORKDIR /opt/test-runner
