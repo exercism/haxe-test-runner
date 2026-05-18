@@ -9,10 +9,9 @@ fi
 slug="$1"
 solution_dir="${2%/}"
 output_dir="${3%/}"
-results_file="${output_dir}/results.json"
 
 echo "${slug}: testing..."
 
-neko bin/runner.n $slug $solution_dir/ $output_dir/
+neko bin/runner.n "${slug}" "${solution_dir}/" "${output_dir}/"
 
 echo "${slug}: done"
