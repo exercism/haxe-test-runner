@@ -10,12 +10,7 @@ for test in test/*; do
         if [ -d "$testdir" ]; then
             bin/run.sh "$testname" "$testdir" "$output_dir"
 
-            # if ! diff "${output_dir}/results.json" "${output_dir}/expected_results.json"; then
-
-            diff <(jq --sort-keys . "${output_dir}/results.json") \
-                 <(jq --sort-keys . "${output_dir}/expected_results.json")
-
-            if (( $? != 0 )); then
+            if ! diff "${output_dir}/results.json" "${output_dir}/expected_results.json"; then
                 echo "❌ ${testdir} FAILED"
                 exit_code=1
             fi
